@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Vue 3 + Quasar SSO Frontend",
   "type": "module",
+  "packageManager": "yarn@1.22.22",
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",
