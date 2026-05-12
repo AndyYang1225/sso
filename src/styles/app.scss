@@ -1,0 +1,297 @@
+html, body, #app {
+  height: 100%;
+  margin: 0;
+  font-family: 'Inter', 'Noto Sans TC', -apple-system, BlinkMacSystemFont,
+    'Segoe UI', Roboto, sans-serif;
+  background: var(--app-bg);
+  color: var(--text);
+  transition: background 0.4s ease, color 0.3s ease;
+}
+
+// ========== Admin 後台 RWD ==========
+.admin-page {
+  padding: 16px;
+}
+@media (min-width: 600px) { .admin-page { padding: 20px; } }
+@media (min-width: 1024px) { .admin-page { padding: 24px 32px; } }
+
+.admin-page-title { font-size: 20px; font-weight: 600; }
+@media (min-width: 600px) { .admin-page-title { font-size: 24px; } }
+
+// 表格水平捲動避免行動裝置爆版
+.q-table__container .q-table {
+  min-width: 640px;
+}
+.q-table__middle { overflow-x: auto; }
+
+// 對話框在窄螢幕滿版
+@media (max-width: 599px) {
+  .q-dialog__inner--minimized > div.admin-dialog {
+    min-width: 0 !important;
+    max-width: 100vw !important;
+    width: 100%;
+    border-radius: 12px 12px 0 0;
+  }
+  .q-dialog__inner--minimized { padding: 0; align-items: flex-end; }
+}
+
+// ========== 共用結構 ==========
+.auth-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 16px 80px;
+  position: relative;
+  overflow: hidden;
+  background: var(--auth-bg);
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--auth-overlay);
+    pointer-events: none;
+  }
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 440px;
+  position: relative;
+  z-index: 1;
+  border-radius: 16px;
+  background: var(--card-bg) !important;
+  backdrop-filter: var(--card-blur);
+  -webkit-backdrop-filter: var(--card-blur);
+  border: 1px solid var(--card-border);
+  box-shadow: var(--card-shadow);
+  color: var(--text);
+  transition: all 0.3s ease;
+}
+
+@media (max-width: 480px) {
+  .auth-card { border-radius: 12px; }
+  .auth-card .q-card-section.q-pt-xl { padding-top: 24px; }
+  .auth-card .q-card-section.q-pb-lg { padding-bottom: 16px; }
+  .auth-card .text-h5 { font-size: 20px; }
+}
+
+.auth-card {
+  .q-field--outlined .q-field__control {
+    background: var(--input-bg);
+    border-radius: 10px;
+  }
+  .q-field--outlined .q-field__control:before { border-color: var(--input-border); }
+  .q-field--outlined:hover .q-field__control:before { border-color: var(--primary-soft); }
+  .q-field--focused .q-field__control:after {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px var(--primary-ring);
+  }
+  .q-field__native,
+  .q-field__prefix,
+  .q-field__suffix,
+  .q-field__input { color: var(--text); }
+  .q-field__label { color: var(--text-muted); }
+  .q-field--highlighted .q-field__label,
+  .q-field--float .q-field__label { color: var(--primary); }
+  .q-field__messages { color: var(--text-muted); }
+  .q-field--error .q-field__messages,
+  .q-field--error .q-field__label { color: #F43F5E; }
+
+  .q-btn[type='submit'] {
+    background: var(--btn-bg) !important;
+    color: var(--btn-text) !important;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    box-shadow: var(--btn-shadow);
+    transition: box-shadow 0.2s ease, transform 0.05s ease;
+    &:hover { box-shadow: var(--btn-shadow-hover); }
+    &:active { transform: translateY(1px); }
+  }
+
+  a, .text-primary {
+    color: var(--link) !important;
+    text-decoration: none;
+    &:hover { text-shadow: var(--link-glow); }
+  }
+
+  .q-checkbox__label { color: var(--text); }
+  .text-grey-7 { color: var(--text-muted) !important; }
+  .text-h5, .text-h6 { color: var(--text-strong); }
+  .q-separator { background: var(--divider); }
+}
+
+.oauth-btn {
+  width: 100%;
+  justify-content: flex-start;
+  padding-left: 16px;
+  background: var(--oauth-bg) !important;
+  border: 1px solid var(--oauth-border) !important;
+  color: var(--text) !important;
+  &:hover {
+    background: var(--oauth-hover-bg) !important;
+    border-color: var(--primary-soft) !important;
+  }
+}
+
+// ========== neon 暗黑霓虹 ==========
+html[data-theme='neon'] {
+  --app-bg: #0A0A0F;
+  --auth-bg:
+    radial-gradient(ellipse 80% 60% at 20% 10%, rgba(34, 211, 238, 0.18), transparent 60%),
+    radial-gradient(ellipse 70% 60% at 80% 90%, rgba(217, 70, 239, 0.18), transparent 60%),
+    radial-gradient(ellipse 60% 50% at 50% 50%, rgba(167, 139, 250, 0.10), transparent 70%),
+    #0A0A0F;
+  --auth-overlay:
+    linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px) 0 0/48px 48px,
+    linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px) 0 0/48px 48px;
+  --text: #E5E7EB;
+  --text-strong: #F3F4F6;
+  --text-muted: rgba(229, 231, 235, 0.55);
+  --card-bg: rgba(17, 17, 24, 0.85);
+  --card-border: rgba(255, 255, 255, 0.08);
+  --card-blur: blur(12px);
+  --card-shadow:
+    0 0 0 1px rgba(34,211,238,.12),
+    0 20px 60px rgba(0,0,0,.6),
+    0 0 80px rgba(34,211,238,.08);
+  --primary: #22D3EE;
+  --primary-soft: rgba(34, 211, 238, 0.5);
+  --primary-ring: rgba(34, 211, 238, 0.18);
+  --input-bg: rgba(255, 255, 255, 0.03);
+  --input-border: rgba(255, 255, 255, 0.12);
+  --btn-bg: linear-gradient(135deg, #22D3EE 0%, #A78BFA 100%);
+  --btn-text: #0A0A0F;
+  --btn-shadow: 0 0 20px rgba(34,211,238,.4), 0 0 40px rgba(167,139,250,.2);
+  --btn-shadow-hover: 0 0 28px rgba(34,211,238,.6), 0 0 60px rgba(167,139,250,.3);
+  --link: #22D3EE;
+  --link-glow: 0 0 8px rgba(34, 211, 238, 0.6);
+  --oauth-bg: rgba(255, 255, 255, 0.04);
+  --oauth-hover-bg: rgba(255, 255, 255, 0.08);
+  --oauth-border: rgba(255, 255, 255, 0.1);
+  --divider: rgba(255, 255, 255, 0.08);
+  .captcha-canvas { filter: invert(0.92) hue-rotate(180deg); }
+}
+
+// ========== minimal 極簡黑白 ==========
+html[data-theme='minimal'] {
+  --app-bg: #FFFFFF;
+  --auth-bg: #FAFAFA;
+  --auth-overlay: none;
+  --text: #111827;
+  --text-strong: #030712;
+  --text-muted: #6B7280;
+  --card-bg: #FFFFFF;
+  --card-border: #E5E7EB;
+  --card-blur: none;
+  --card-shadow: 0 1px 3px rgba(0,0,0,.05), 0 10px 40px rgba(0,0,0,.04);
+  --primary: #111827;
+  --primary-soft: #374151;
+  --primary-ring: rgba(17, 24, 39, 0.1);
+  --input-bg: #FFFFFF;
+  --input-border: #E5E7EB;
+  --btn-bg: #111827;
+  --btn-text: #FFFFFF;
+  --btn-shadow: 0 1px 2px rgba(0,0,0,.1);
+  --btn-shadow-hover: 0 4px 12px rgba(0,0,0,.15);
+  --link: #111827;
+  --link-glow: none;
+  --oauth-bg: #FFFFFF;
+  --oauth-hover-bg: #F9FAFB;
+  --oauth-border: #E5E7EB;
+  --divider: #E5E7EB;
+}
+
+// ========== sunset 暖色日落 ==========
+html[data-theme='sunset'] {
+  --app-bg: #FFF7ED;
+  --auth-bg: linear-gradient(135deg, #FDBA74 0%, #F472B6 55%, #C084FC 100%);
+  --auth-overlay: radial-gradient(ellipse at top, rgba(255,255,255,.25), transparent 60%);
+  --text: #431407;
+  --text-strong: #1C0A03;
+  --text-muted: #78350F;
+  --card-bg: rgba(255, 255, 255, 0.92);
+  --card-border: rgba(255, 255, 255, 0.6);
+  --card-blur: blur(10px);
+  --card-shadow: 0 20px 60px rgba(234,88,12,.25);
+  --primary: #EA580C;
+  --primary-soft: #FB923C;
+  --primary-ring: rgba(234, 88, 12, 0.2);
+  --input-bg: rgba(255, 247, 237, 0.6);
+  --input-border: #FED7AA;
+  --btn-bg: linear-gradient(135deg, #F97316 0%, #EC4899 100%);
+  --btn-text: #FFFFFF;
+  --btn-shadow: 0 8px 20px rgba(234,88,12,.35);
+  --btn-shadow-hover: 0 12px 28px rgba(234,88,12,.5);
+  --link: #C2410C;
+  --link-glow: none;
+  --oauth-bg: rgba(255, 255, 255, 0.6);
+  --oauth-hover-bg: rgba(255, 255, 255, 0.9);
+  --oauth-border: rgba(234, 88, 12, 0.15);
+  --divider: rgba(234, 88, 12, 0.15);
+}
+
+// ========== glass 玻璃擬態 ==========
+html[data-theme='glass'] {
+  --app-bg: #6366F1;
+  --auth-bg:
+    radial-gradient(circle at 20% 20%, #60A5FA, transparent 50%),
+    radial-gradient(circle at 80% 30%, #F472B6, transparent 50%),
+    radial-gradient(circle at 40% 80%, #A78BFA, transparent 50%),
+    radial-gradient(circle at 90% 90%, #22D3EE, transparent 50%),
+    #4338CA;
+  --auth-overlay: none;
+  --text: #F5F3FF;
+  --text-strong: #FFFFFF;
+  --text-muted: rgba(245, 243, 255, 0.7);
+  --card-bg: rgba(255, 255, 255, 0.12);
+  --card-border: rgba(255, 255, 255, 0.25);
+  --card-blur: blur(24px) saturate(180%);
+  --card-shadow: 0 20px 60px rgba(0,0,0,.25), inset 0 1px 0 rgba(255,255,255,.3);
+  --primary: #FFFFFF;
+  --primary-soft: rgba(255, 255, 255, 0.6);
+  --primary-ring: rgba(255, 255, 255, 0.25);
+  --input-bg: rgba(255, 255, 255, 0.1);
+  --input-border: rgba(255, 255, 255, 0.2);
+  --btn-bg: rgba(255, 255, 255, 0.95);
+  --btn-text: #4338CA;
+  --btn-shadow: 0 8px 24px rgba(0,0,0,.2);
+  --btn-shadow-hover: 0 12px 32px rgba(0,0,0,.3);
+  --link: #FFFFFF;
+  --link-glow: none;
+  --oauth-bg: rgba(255, 255, 255, 0.1);
+  --oauth-hover-bg: rgba(255, 255, 255, 0.2);
+  --oauth-border: rgba(255, 255, 255, 0.2);
+  --divider: rgba(255, 255, 255, 0.2);
+}
+
+// ========== nature 綠色自然 ==========
+html[data-theme='nature'] {
+  --app-bg: #F0FDF4;
+  --auth-bg: linear-gradient(135deg, #D1FAE5 0%, #A7F3D0 50%, #6EE7B7 100%);
+  --auth-overlay: radial-gradient(ellipse at top, rgba(255,255,255,.3), transparent 60%);
+  --text: #064E3B;
+  --text-strong: #022C22;
+  --text-muted: #047857;
+  --card-bg: rgba(255, 255, 255, 0.9);
+  --card-border: rgba(16, 185, 129, 0.15);
+  --card-blur: blur(8px);
+  --card-shadow: 0 20px 50px rgba(5, 150, 105, 0.18);
+  --primary: #059669;
+  --primary-soft: #10B981;
+  --primary-ring: rgba(5, 150, 105, 0.2);
+  --input-bg: rgba(240, 253, 244, 0.6);
+  --input-border: #A7F3D0;
+  --btn-bg: linear-gradient(135deg, #10B981 0%, #059669 100%);
+  --btn-text: #FFFFFF;
+  --btn-shadow: 0 8px 20px rgba(5,150,105,.3);
+  --btn-shadow-hover: 0 12px 28px rgba(5,150,105,.45);
+  --link: #059669;
+  --link-glow: none;
+  --oauth-bg: rgba(255, 255, 255, 0.7);
+  --oauth-hover-bg: #FFFFFF;
+  --oauth-border: rgba(16, 185, 129, 0.2);
+  --divider: rgba(16, 185, 129, 0.15);
+}
