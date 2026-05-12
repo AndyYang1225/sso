@@ -26,11 +26,9 @@ export default defineConfig(({ mode }) => {
     css: {
       preprocessorOptions: {
         sass: {
-          api: 'modern-compiler',
           loadPaths: [projectRoot],
         },
         scss: {
-          api: 'modern-compiler',
           loadPaths: [projectRoot],
         },
       },
